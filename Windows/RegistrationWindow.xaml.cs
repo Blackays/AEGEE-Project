@@ -53,6 +53,17 @@ namespace AEGEE_Project.Windows
                 MessageBox.Show("Surname should have only letters");
                 return;
             }
+            if (!AgeBox.Text.All(Char.IsDigit))
+            {
+                MessageBox.Show("Age should be digital");
+                return;
+            }
+            else if (Convert.ToInt32(AgeBox.Text) > 100 || Convert.ToInt32(AgeBox.Text) < 0 )
+            {
+                MessageBox.Show("Age should be less than 100 and bigger than 0");
+                return;
+            }
+
 
             try
             {
@@ -60,11 +71,12 @@ namespace AEGEE_Project.Windows
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "INSERT INTO Users (Name, Surname, Login, Password) VALUES(@name, @surname, @login, @password)";
+                cmd.CommandText = "INSERT INTO Users (Name, Surname, Login, Password, Age) VALUES(@name, @surname, @login, @password, @Age)";
                 cmd.Parameters.AddWithValue("@name", NameBox.Text);
                 cmd.Parameters.AddWithValue("@surname", SurnameBox.Text);
                 cmd.Parameters.AddWithValue("@login", LoginBox.Text);
                 cmd.Parameters.AddWithValue("@password", PasswordBox.Text);
+                cmd.Parameters.AddWithValue("@Age", AgeBox.Text);
                 cmd.Connection = con;
                 a = cmd.ExecuteNonQuery();
             }
@@ -77,8 +89,8 @@ namespace AEGEE_Project.Windows
             if (a == 1)
             {
                 MessageBox.Show("Added");
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
+                PhotoRegistrationWindow photoRegistration = new PhotoRegistrationWindow();
+                photoRegistration.Show();
                 this.Close();
             }
         }

@@ -29,42 +29,28 @@ namespace AEGEE_Project.Windows
 
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            
-            try
-            {
+        {           
                 SqlConnection con = new SqlConnection();
                 con.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
                 con.Open();
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "SELECT COUNT(1) FROM Users WHERE Login=@Login AND Password=@Password";
-
                 cmd.Parameters.AddWithValue("@Login", LoginBox.Text);
                 cmd.Parameters.AddWithValue("@Password", PasswordBox.Text);
                 cmd.Connection = con;
                 int a = Convert.ToInt32(cmd.ExecuteScalar());
                 if (a==1)
                 {
-                    MessageBox.Show("User was found ");
-                    MessageBox.Show(a.ToString());
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show(a.ToString());
-                    MessageBox.Show("User was not found ");
+                    MessageBox.Show("Incorrect Login or Password");
                     return;
-                }
-            }
-            catch
-            {
-
-            }
-                
+                }                        
         }
-
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             RegistrationWindow registrationWindow = new RegistrationWindow();

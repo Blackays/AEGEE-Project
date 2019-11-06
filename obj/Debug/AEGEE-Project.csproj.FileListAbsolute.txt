@@ -25,3 +25,5 @@ C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\MembersWindow.baml
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\RegistrationWindow.baml
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\VotingWindow.baml
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\AEGEE-Project.csprojAssemblyReference.cache
+C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\PhotoRegistrationWindow.g.cs
+C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\PhotoRegistrationWindow.baml

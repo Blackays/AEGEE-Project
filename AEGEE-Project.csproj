@@ -72,6 +72,9 @@
     <Compile Include="Windows\MembersWindow.xaml.cs">
       <DependentUpon>MembersWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PhotoRegistrationWindow.xaml.cs">
+      <DependentUpon>PhotoRegistrationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\MembersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PhotoRegistrationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
