@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AEGEE_Project.Windows"
+        xmlns:user="clr-namespace:AEGEE_Project.Model"
         mc:Ignorable="d"
         Title="RegistrationWindow" Height="550" Width="400">
     <Window.Resources>
@@ -40,9 +41,13 @@
         <TextBlock Text="Repeat Password:" Grid.Row="2"></TextBlock>
         <TextBox x:Name="RepeatPasswordBox" Grid.Column="1"  Grid.Row="2"></TextBox>
         <TextBlock Text="Enter Name:" Grid.Row="3"></TextBlock>
-        <TextBox x:Name="NameBox" Grid.Column="1"  Grid.Row="3" Text="{Binding Path=Name}"></TextBox>
+        <TextBox x:Name="NameBox" Grid.Column="1"  Grid.Row="3">
+            
+        </TextBox>
         <TextBlock Text="Enter Surname:" Grid.Row="4"></TextBlock>
-        <TextBox x:Name="SurnameBox" Grid.Column="1"  Grid.Row="4" Text="{Binding Path=Surname}"></TextBox>
-        <Button x:Name="RegisterButton" Grid.ColumnSpan="2" Grid.Row="5" Content="Register" Click="RegisterButton_Click"></Button>
+        <TextBox x:Name="SurnameBox" Grid.Column="1"  Grid.Row="4">
+            
+        </TextBox>
+        <Button x:Name="RegisterButton" Grid.ColumnSpan="2" Grid.Row="6" Content="Register" Click="RegisterButton_Click"></Button>
     </Grid>
 </Window>

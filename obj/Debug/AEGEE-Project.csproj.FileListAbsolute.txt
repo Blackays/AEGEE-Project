@@ -5,7 +5,6 @@ C:\Users\mni01\source\repos\AEGEE-Project\bin\Debug\EntityFramework.dll
 C:\Users\mni01\source\repos\AEGEE-Project\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\mni01\source\repos\AEGEE-Project\bin\Debug\EntityFramework.xml
 C:\Users\mni01\source\repos\AEGEE-Project\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\AEGEE-Project.csprojAssemblyReference.cache
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\MainWindow.g.cs
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\App.g.cs
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\AEGEE-Project_MarkupCompile.cache
@@ -25,3 +24,4 @@ C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\LoginWindow.baml
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\MembersWindow.baml
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\RegistrationWindow.baml
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\VotingWindow.baml
+C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\AEGEE-Project.csprojAssemblyReference.cache
