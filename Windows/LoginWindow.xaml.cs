@@ -37,6 +37,7 @@ namespace AEGEE_Project.Windows
                 cmd.CommandText = "SELECT COUNT(1) FROM Users WHERE Login=@Login AND Password=@Password";
                 cmd.Parameters.AddWithValue("@Login", LoginBox.Text);
                 cmd.Parameters.AddWithValue("@Password", PasswordBox.Text);
+                
                 cmd.Connection = con;
                 int a = Convert.ToInt32(cmd.ExecuteScalar());
                 if (a==1)

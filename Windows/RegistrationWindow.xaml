@@ -27,6 +27,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="250"/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -35,20 +37,22 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Enter Login:" ></TextBlock>
-        <TextBox x:Name="LoginBox" Grid.Column="1" Text="{Binding Path=Login}"></TextBox>
-        <TextBlock Text="Enter Password:" Grid.Row="1"></TextBlock>
-        <TextBox x:Name="PasswordBox" Grid.Column="1"  Grid.Row="1" Text="{Binding Path=Password}"></TextBox>
-        <TextBlock Text="Repeat Password:" Grid.Row="2"></TextBlock>
-        <TextBox x:Name="RepeatPasswordBox" Grid.Column="1"  Grid.Row="2"></TextBox>
-        <TextBlock Text="Enter Name:" Grid.Row="3"></TextBlock>
-        <TextBox x:Name="NameBox" Grid.Column="1"  Grid.Row="3">
+        <Image Height="230"  Name="image" Stretch="UniformToFill"  Width="380" Grid.ColumnSpan="2"/>
+        <Button x:Name="Browse" Width="250" Height="40" Grid.Row="1" Grid.ColumnSpan="2" Content="Browse" Click="Browse_Click"/>
+        <TextBlock Text="Enter Login:" Grid.Row="2"></TextBlock>
+        <TextBox x:Name="LoginBox" Grid.Column="1" Text="{Binding Path=Login}" Grid.Row="2"></TextBox>
+        <TextBlock Text="Enter Password:" Grid.Row="3"></TextBlock>
+        <TextBox x:Name="PasswordBox" Grid.Column="1"  Grid.Row="3" Text="{Binding Path=Password}"></TextBox>
+        <TextBlock Text="Repeat Password:" Grid.Row="4"></TextBlock>
+        <TextBox x:Name="RepeatPasswordBox" Grid.Column="1"  Grid.Row="4"></TextBox>
+        <TextBlock Text="Enter Name:" Grid.Row="5"></TextBlock>
+        <TextBox x:Name="NameBox" Grid.Column="1"  Grid.Row="5">
             
         </TextBox>
-        <TextBlock Text="Enter Surname:" Grid.Row="4"></TextBlock>
-        <TextBox x:Name="SurnameBox" Grid.Column="1"  Grid.Row="4"></TextBox>
-        <TextBlock Text="Enter Age:" Grid.Row="5"></TextBlock>
-        <TextBox x:Name="AgeBox" Grid.Column="1"  Grid.Row="5"></TextBox>
-        <Button x:Name="RegisterButton" Grid.ColumnSpan="2" Grid.Row="6" Content="Register" Click="RegisterButton_Click"></Button>
+        <TextBlock Text="Enter Surname:" Grid.Row="6"></TextBlock>
+        <TextBox x:Name="SurnameBox" Grid.Column="1"  Grid.Row="6"></TextBox>
+        <TextBlock Text="Enter Age:" Grid.Row="7"></TextBlock>
+        <TextBox x:Name="AgeBox" Grid.Column="1"  Grid.Row="7"></TextBox>
+        <Button x:Name="RegisterButton" Grid.ColumnSpan="2" Grid.Row="8" Content="Register" Click="RegisterButton_Click"></Button>
     </Grid>
 </Window>

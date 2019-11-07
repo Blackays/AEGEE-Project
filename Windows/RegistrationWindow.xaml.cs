@@ -1,9 +1,11 @@
 ﻿using AEGEE_Project.Model;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -21,12 +23,14 @@ namespace AEGEE_Project.Windows
 {
     public partial class RegistrationWindow : Window
     {
-        User Tom;
+        User user;
+        string strName, imageName;
+        string constr = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         public RegistrationWindow()
         {
             InitializeComponent();
-            Tom = new User();
-            this.DataContext = Tom;
+            user = new User();
+            this.DataContext = user;
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -64,12 +68,11 @@ namespace AEGEE_Project.Windows
                 return;
             }
 
-
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            con.Open();
             try
             {
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-                con.Open();
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "INSERT INTO Users (Name, Surname, Login, Password, Age) VALUES(@name, @surname, @login, @password, @Age)";
                 cmd.Parameters.AddWithValue("@name", NameBox.Text);
@@ -77,23 +80,91 @@ namespace AEGEE_Project.Windows
                 cmd.Parameters.AddWithValue("@login", LoginBox.Text);
                 cmd.Parameters.AddWithValue("@password", PasswordBox.Text);
                 cmd.Parameters.AddWithValue("@Age", AgeBox.Text);
+                
                 cmd.Connection = con;
                 a = cmd.ExecuteNonQuery();
+                
             }
-            catch
+            catch(Exception ex)
             {      
-                MessageBox.Show("This Login already exist");
+                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Added");
+                return;
+            }
+            
+            if (a == 1)
+            {
+                MessageBox.Show("Added");              
+            }
+
+            try
+            {
+                if (imageName != "")
+                {
+                    //Initialize a file stream to read the image file
+                    FileStream fs = new FileStream(imageName, FileMode.Open, FileAccess.Read);
+
+                    //Initialize a byte array with size of stream
+                    byte[] imgByteArr = new byte[fs.Length];
+
+                    //Read data from the file stream and put into the byte array
+                    fs.Read(imgByteArr, 0, Convert.ToInt32(fs.Length));
+
+                    //Close a file stream
+                    fs.Close();
+
+                    using (con)
+                    {
+
+                        string sql = "insert into Images(ImageContent) values(@img)";
+                        using (SqlCommand cmd2 = new SqlCommand(sql, con))
+                        {
+                            //Pass byte array into database
+                            cmd2.CommandText = "insert into Images(ImageContent) values(@img)";
+                            cmd2.Parameters.Add(new SqlParameter("img", imgByteArr));
+                            int result = cmd2.ExecuteNonQuery();
+                            if (result == 1)
+                            {
+                                MessageBox.Show("Image added successfully.");
+                                MainWindow mainWindow = new MainWindow();
+                                mainWindow.Show();
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 return;
             }
 
-            if (a == 1)
-            {
-                MessageBox.Show("Added");
-                PhotoRegistrationWindow photoRegistration = new PhotoRegistrationWindow();
-                photoRegistration.Show();
-                this.Close();
-            }
         }
-        
+
+        private void Browse_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                FileDialog fldlg = new OpenFileDialog();
+                fldlg.InitialDirectory = Environment.SpecialFolder.MyPictures.ToString();
+                fldlg.Filter = "Image File (*.jpg;*.bmp;*.gif)|*.jpg;*.bmp;*.gif";
+                fldlg.ShowDialog();
+                {
+                    strName = fldlg.SafeFileName;
+                    imageName = fldlg.FileName;
+                    ImageSourceConverter isc = new ImageSourceConverter();
+                    image.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
+                }
+                fldlg = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+           
+
+         
+        }
     }
 }
