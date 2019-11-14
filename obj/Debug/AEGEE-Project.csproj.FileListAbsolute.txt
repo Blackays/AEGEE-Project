@@ -24,6 +24,10 @@ C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\LoginWindow.baml
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\MembersWindow.baml
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\RegistrationWindow.baml
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\VotingWindow.baml
+C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Styles\Buttons.baml
+C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\App.baml
+C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Styles\Colors.baml
+C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Styles\Window.baml
+C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\AEGEE-Project.csproj.Fody.CopyLocal.cache
 C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\AEGEE-Project.csprojAssemblyReference.cache
-C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\PhotoRegistrationWindow.g.cs
-C:\Users\mni01\source\repos\AEGEE-Project\obj\Debug\Windows\PhotoRegistrationWindow.baml

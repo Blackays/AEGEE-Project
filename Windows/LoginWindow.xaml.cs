@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Configuration;
+using AEGEE_Project.Model;
+using AEGEE_Project.Methods;
+using System.Data;
 
 namespace AEGEE_Project.Windows
 {
@@ -29,28 +32,27 @@ namespace AEGEE_Project.Windows
 
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {           
-                SqlConnection con = new SqlConnection();
-                con.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-                con.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "SELECT COUNT(1) FROM Users WHERE Login=@Login AND Password=@Password";
-                cmd.Parameters.AddWithValue("@Login", LoginBox.Text);
-                cmd.Parameters.AddWithValue("@Password", PasswordBox.Text);
-                
-                cmd.Connection = con;
-                int a = Convert.ToInt32(cmd.ExecuteScalar());
-                if (a==1)
-                {
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Incorrect Login or Password");
-                    return;
-                }                        
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "SELECT COUNT(1) FROM Users WHERE Login=@Login AND Password=@Password";
+            cmd.Parameters.AddWithValue("@Login", LoginBox.Text);
+            cmd.Parameters.AddWithValue("@Password", PasswordBox.Text);
+            cmd.Connection = con;
+            int a = Convert.ToInt32(cmd.ExecuteScalar());
+            if (a == 1)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show($"Incorrect Login or Password   {a}");
+                return;
+            }
         }
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {

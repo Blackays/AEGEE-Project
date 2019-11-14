@@ -38,15 +38,15 @@ namespace AEGEE_Project.Windows
             int a = 1;
 
             if (PasswordBox.Text.Trim() == "" || RepeatPasswordBox.Text.Trim() == "")
-            {            
+            {
                 MessageBox.Show("One or more input field is empty,Please enter values");
                 return;
             }
             if (PasswordBox.Text.Trim() != RepeatPasswordBox.Text.Trim())
-            {               
+            {
                 MessageBox.Show("Please enter equal passwords");
                 return;
-            }           
+            }
             if (!NameBox.Text.All(Char.IsLetter))
             {
                 MessageBox.Show("Name should have only letters");
@@ -62,7 +62,7 @@ namespace AEGEE_Project.Windows
                 MessageBox.Show("Age should be digital");
                 return;
             }
-            else if (Convert.ToInt32(AgeBox.Text) > 100 || Convert.ToInt32(AgeBox.Text) < 0 )
+            else if (Convert.ToInt32(AgeBox.Text) > 100 || Convert.ToInt32(AgeBox.Text) < 0)
             {
                 MessageBox.Show("Age should be less than 100 and bigger than 0");
                 return;
@@ -80,21 +80,21 @@ namespace AEGEE_Project.Windows
                 cmd.Parameters.AddWithValue("@login", LoginBox.Text);
                 cmd.Parameters.AddWithValue("@password", PasswordBox.Text);
                 cmd.Parameters.AddWithValue("@Age", AgeBox.Text);
-                
+
                 cmd.Connection = con;
                 a = cmd.ExecuteNonQuery();
-                
+
             }
-            catch(Exception ex)
-            {      
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message.ToString());
                 MessageBox.Show("Added");
                 return;
             }
-            
+
             if (a == 1)
             {
-                MessageBox.Show("Added");              
+                MessageBox.Show("Added");
             }
 
             try
@@ -146,25 +146,77 @@ namespace AEGEE_Project.Windows
         {
             try
             {
-                FileDialog fldlg = new OpenFileDialog();
-                fldlg.InitialDirectory = Environment.SpecialFolder.MyPictures.ToString();
-                fldlg.Filter = "Image File (*.jpg;*.bmp;*.gif)|*.jpg;*.bmp;*.gif";
-                fldlg.ShowDialog();
+                
+                var dialog = new Microsoft.Win32.OpenFileDialog();
+                dialog.Filter =
+                    "Image Files (*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                if ((bool)dialog.ShowDialog())
                 {
-                    strName = fldlg.SafeFileName;
-                    imageName = fldlg.FileName;
-                    ImageSourceConverter isc = new ImageSourceConverter();
-                    image.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
+                    var bitmap = new BitmapImage(new Uri(dialog.FileName));
+                    var image = new Image { Source = bitmap };
+                    Canvas.SetLeft(image, 0);
+                    Canvas.SetTop(image, 0);
+                    canvas.Children.Add(image);
                 }
-                fldlg = null;
+
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
-           
-
-         
         }
+
+        private Image draggedImage;
+        private Point mousePosition;
+
+        private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var image = e.Source as Image;
+
+            if (image != null && canvas.CaptureMouse())
+            {
+                mousePosition = e.GetPosition(canvas);
+                draggedImage = image;
+                Panel.SetZIndex(draggedImage, 1); // in case of multiple images
+            }
+        }
+
+        private void CanvasMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (draggedImage != null)
+            {
+                canvas.ReleaseMouseCapture();
+                Panel.SetZIndex(draggedImage, 0);
+                draggedImage = null;
+            }
+        }
+        const double ScaleRate = 1.1;
+        private void canvas_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                st.ScaleX *= ScaleRate;
+                st.ScaleY *= ScaleRate;
+            }
+            else
+            {
+                st.ScaleX /= ScaleRate;
+                st.ScaleY /= ScaleRate;
+            }
+        }
+
+        private void CanvasMouseMove(object sender, MouseEventArgs e)
+        {
+            if (draggedImage != null)
+            {
+                var position = e.GetPosition(canvas);
+                var offset = position - mousePosition;
+                mousePosition = position;
+                Canvas.SetLeft(draggedImage, Canvas.GetLeft(draggedImage) + offset.X);
+                Canvas.SetTop(draggedImage, Canvas.GetTop(draggedImage) + offset.Y);
+            }
+        }
+
     }
 }

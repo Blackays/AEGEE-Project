@@ -16,18 +16,20 @@
             <Setter Property="Width" Value="100"/>
             <Setter Property="Height" Value="20"/>
         </Style>
-        <Style TargetType="Button">
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Height" Value="40"/>
-        </Style>
+        
+        
+        
     </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <ImageBrush TileMode="Tile" ImageSource="C:\Users\mni01\source\repos\AEGEE-Project\Images\emoji-background.png" Viewport="0 0 500 500" ViewportUnits="Absolute"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="250"/>
+            <RowDefinition Height="200"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -37,8 +39,24 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Image Height="230"  Name="image" Stretch="UniformToFill"  Width="380" Grid.ColumnSpan="2"/>
-        <Button x:Name="Browse" Width="250" Height="40" Grid.Row="1" Grid.ColumnSpan="2" Content="Browse" Click="Browse_Click"/>
+
+        <Canvas x:Name="canvas"
+            MouseLeftButtonDown="CanvasMouseLeftButtonDown"
+            MouseLeftButtonUp="CanvasMouseLeftButtonUp"
+            MouseMove="CanvasMouseMove" Grid.ColumnSpan="2" Width="380" Height="180" MouseWheel="canvas_MouseWheel">
+            <Canvas.LayoutTransform>
+                <ScaleTransform ScaleX="0.2" ScaleY="0.2"/>
+            </Canvas.LayoutTransform>
+            <Canvas.RenderTransform>
+                <ScaleTransform x:Name="st"/>
+            </Canvas.RenderTransform>
+            <Canvas.Clip>
+                <EllipseGeometry Center="190,100" RadiusX="400" RadiusY="400"  />
+            </Canvas.Clip>
+            <Image Name="image" Width="380" Height="180" Stretch="Fill" >
+            </Image>
+        </Canvas>
+        <Button x:Name="Browse" Width="150" Height="30" Grid.Row="1" Grid.ColumnSpan="2" Content="Browse" Click="Browse_Click" Style="{StaticResource WindowCloseButton}"/>
         <TextBlock Text="Enter Login:" Grid.Row="2"></TextBlock>
         <TextBox x:Name="LoginBox" Grid.Column="1" Text="{Binding Path=Login}" Grid.Row="2"></TextBox>
         <TextBlock Text="Enter Password:" Grid.Row="3"></TextBlock>
@@ -53,6 +71,6 @@
         <TextBox x:Name="SurnameBox" Grid.Column="1"  Grid.Row="6"></TextBox>
         <TextBlock Text="Enter Age:" Grid.Row="7"></TextBlock>
         <TextBox x:Name="AgeBox" Grid.Column="1"  Grid.Row="7"></TextBox>
-        <Button x:Name="RegisterButton" Grid.ColumnSpan="2" Grid.Row="8" Content="Register" Click="RegisterButton_Click"></Button>
+        <Button x:Name="RegisterButton" Grid.ColumnSpan="2" Grid.Row="8" Content="Register" Click="RegisterButton_Click" Style="{StaticResource WindowCloseButton}" Width="150" Height="30"></Button>
     </Grid>
 </Window>

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\mni01\source\repos\AEGEE-Project\App.xaml
-5-108065491
+82104794152
 
-121327940108
-18-1828462025
-Windows\LoginWindow.xaml;Windows\MainWindow.xaml;Windows\MembersWindow.xaml;Windows\RegistrationWindow.xaml;Windows\VotingWindow.xaml;
+19-775741668
+19-55745650
+Styles\Buttons.xaml;Styles\Colors.xaml;Styles\Window.xaml;Windows\LoginWindow.xaml;Windows\MainWindow.xaml;Windows\MembersWindow.xaml;Windows\RegistrationWindow.xaml;Windows\VotingWindow.xaml;
 
 True
 
